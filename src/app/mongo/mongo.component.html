@@ -1,0 +1,19 @@
+<!-- <p >
+{{i.id}} test works</p> -->
+<div class="row" style="margin-top: 60px">
+  <div class="col-sm-6 col-md-4" *ngFor="let i of item" >
+    <div class="card card-accent-primary" style="width: 75%;height: 250px;">
+      <div class="card-header" style="text-align: center;">
+        <img src="{{i.img}}" style="width:150px;height:150px;">
+      </div>
+      <div class="card-body" style="align-self: center;" >
+
+       <a class="btn" style="font-weight:bold;" (click)=player(i)>{{i.id}}.&nbsp;{{i.name}}</a>
+       <!-- <p style="text-align:justify;">
+        {{i.desc}}
+       </p> -->
+      </div>
+    </div>
+  </div>
+  </div>
+

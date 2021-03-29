@@ -1,0 +1,27 @@
+// If you want to override variables do it here
+@import "variables";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+.nav-link{
+    color: black !important;;
+}
+.nav-link.active{
+    background: rgb(223, 223, 223) !important;
+}
+.sidebar{
+    color: black
+    !important;
+    
+}
+.nav-link:hover{
+    background-color: rgb(255, 62, 62)!important;
+  
+}
+.nav-title{
+    color: black!important;
+}
+

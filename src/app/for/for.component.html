@@ -1,0 +1,189 @@
+<div class="row" style="margin-top: 60px">
+<div class="col-lg-12" [hidden]="!opentab">
+  <h4 > New Order Details</h4>
+    <div class="card" [ngStyle]=bg >
+      
+      <div class="card-header">
+
+        <!-- <i class="fa fa-eercast" ></i> -->
+       
+        <button class=" btn" (click)=onClickOpenForm() style="float: right;background-color: #cc2026;color: white;"><i class="fa fa-plus"></i> Add</button>
+        <div class="input-group col-3">
+          <input  class="form-control forminput" placeholder="Search By ID" type="text" style="width: 25%;" (input)="search($event.target.value)">
+          <button class="btn btn-link" style="background-color:white;">
+          <span >
+            <i aria-hidden="true" class="fa fa-search"></i>
+          </span>
+        </button>
+        </div>
+        
+       
+    </div>
+    
+      <div class="card-body">
+        
+        <table class="table table-striped" >
+            
+          <thead style="background-color: #cc2026; color: white;">
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>ID</th>
+              <th >NAME</th>
+             <!-- <th>Temperament</th>
+             <th>Bred_for</th>  -->
+             <th>IMAGE</th> 
+              <th>ACTION</th> 
+              
+          
+            </tr>
+            
+          </thead>
+          
+          
+          <tbody >
+
+           
+            <tr *ngFor="let i of data | filter:srch| paginate:{id:'listing_pagination',itemsPerPage:3,currentPage:page,totalItems:totallength};let ia = index; ">
+              <td>{{((3*(page - 1))+ia+1)}}</td>
+              <td >{{i.id}}</td>
+              <td>{{i.name}}</td>
+              
+              <td><img  style="width:40px; height:40px"></td>
+              <!-- <td>{{item.temperament}}</td>
+              <td>{{item.bred_for}}</td> -->
+              <td>
+                <button type="button" aria-pressed="true" class="btn   active fa fa-eye icon" style="color:#000000 ;font-size: 18px;" (click)="onClick($event,i.id,i.name);showModal=true"></button>
+                <button type="button" aria-pressed="true" class="btn   active fa fa-pencil icon" style="font-size: 18px; color: #007bff" (click)=view(i.id,i.name)></button> 
+                <button type="button" aria-pressed="true" class="btn   active fa fa-trash icon" style="color:#cc2026 ;font-size: 18px;" (click)="derow(i.id)"></button>
+               
+              </td>
+            </tr>
+            <tr [hidden]="!nodata">
+              <td class="text-center" colspan="5" style="background: white;">
+                <img class="no-data" src="assets/img/nodata.png" width="100px">
+                <p>No Data!!</p>
+              </td>
+            </tr>
+            
+          </tbody>
+          
+        </table>
+        
+        <div class="float-right">
+        <pagination-controls  id="listing_pagination"
+            (pageChange)="page = $event"
+            maxSize="5"
+            directionLinks="true">
+              
+            </pagination-controls>
+          </div>
+        <p>{{s}}</p>
+      
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12" [hidden]="!openform">
+    <div class="card">
+      <div class="card-header">
+        <strong>Operations</strong>
+        <a class="btn fa fa-times" style="color:#cc2026;float: right;font-size:25px;" (click)=formclose()></a>
+      </div>
+      <div class="card-body">
+        <form action="" #heroForm="ngForm" method="post" class="form-horizontal" [formGroup]="userprofileform"  (ngSubmit)="onsubmit();heroForm.reset()" >
+          
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label">ID</label>
+            <div class="col-md-9">
+              <input type="text" [ngClass]="{'is-valid':f.id.valid}" class="form-control" formControlName="id" >
+             
+ <div *ngIf="f.id.errors" class="text-danger">
+  <div *ngIf="f.id.errors.pattern" >Please Enter a valid ID.</div>
+</div> 
+
+              <!-- <span class="help-block">Please enter your email</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" >Name</label>
+            <div class="col-md-9" >
+              <input type="text" class="form-control" [ngClass]="{'is-valid':f.name.valid}" formControlName="name" >
+   <!-- <div *ngIf="f.name.errors">
+              <div *ngIf="f.name.errors.Required" class="alert alert-danger">Please Enter a valid NAME.</div> 
+             <div *ngIf="f.name.errors.maxLength" class="alert alert-danger">NAME cannot be too large.</div>
+
+       </div>  -->
+              <!-- <span class="help-block">Please enter your password</span> -->
+              <input type="file" formControlName="doc" (change)=readUrl($event,$event.target.files) id=fileInput>
+            </div>
+          </div>
+          <div class="card-footer">
+            <!-- <p>{{index}}</p> -->
+            
+            <button type="submit" class="btn btn-sm btn-primary"  [disabled]="!userprofileform.valid"  [hidden]="!hideadd"><i class="fa fa-dot-circle-o" ></i>Add</button>
+            <button type="button" class="btn btn-sm btn-primary" [disabled]="!userprofileform.valid" (click)="update(index);heroForm.reset()" [hidden]="!hideupdate"><i class="fa fa-ban"></i> Update</button>
+            <button type="reset" class="btn btn-sm btn-danger" (click)="heroForm.reset()"><i class="fa fa-ban"></i> Reset</button>
+
+          </div>
+        </form>
+        
+      </div>
+      
+    </div>
+</div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'" ngClass="{'show':showModal}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header"style="background-color: #cc2026;color:white">
+        <h4 class="modal-title" >Poduct Details:</h4>
+        <button type="button" class="close" data-dismiss="modal" style="color: white;font-size:30px;" (click) = "hide()">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <table class="table table-striped" >
+            
+          <thead >
+            <tr>
+              <!-- <th style="width: 50px;">#</th> -->
+              <th>ID</th>
+              <th >NAME</th>
+             <!-- <th>Temperament</th>
+             <th>Bred_for</th>  -->
+              <!-- <th>Action</th>  -->
+              
+            </tr>
+          </thead>
+          <tbody >
+            <tr>
+              <td>{{abc}}</td>
+              <td>{{abd}}</td>
+              <!-- <td></td> -->
+              <!-- <td>{{item.temperament}}</td>
+              <td>{{item.bred_for}}</td> -->
+              <!-- <td>
+                <button type="button" aria-pressed="true" class="btn   active fa fa-eye icon" style="color:#000000 ;font-size: 18px;" (click)="onClick($event)"></button>
+                <button type="button" aria-pressed="true" class="btn   active fa fa-pencil icon" style="font-size: 18px; color: #007bff" (click)=view(i.id,i.name)></button> 
+                <button type="button" aria-pressed="true" class="btn   active fa fa-trash icon" style="color:#cc2026 ;font-size: 18px;" (click)="derow(i.id)"></button>
+               
+              </td> -->
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+      </div>
+      
+    </div>
+
+
+
