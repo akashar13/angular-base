@@ -98,10 +98,10 @@ export const routes: Routes = [
         path: 'theme',
         loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
       },
-      {
-        path: 'widgets',
-        loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
-      }
+      // {
+      //   path: 'widgets',
+      //   loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
+      // }
     ]
   },
   { path: '**', component: P404Component }

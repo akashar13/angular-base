@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NgModule,Injector, DoBootstrap } from '@angular/core';
+import { NgModule,Injector, DoBootstrap, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -64,6 +64,8 @@ import { MongoComponent } from './mongo/mongo.component';
 import { isConstructorDeclaration } from 'typescript';
 import { createCustomElement } from '@angular/elements';
 import { PlayerComponent } from './mongo/player/player.component';
+// import { WidgetComponent } from './mongo/widget/widget.component';
+// import { WidgetComponent } from '/mongo/w';
 //import { FormModule } from './form/form.module';
 //import { FormComponent } from './form/form.component';
 // import { TableComponent } from './table/table.component';
@@ -99,6 +101,7 @@ import { PlayerComponent } from './mongo/player/player.component';
     LoginComponent,
     RegisterComponent,
     MongoComponent,
+    //  WidgetComponent,
 
 
 
@@ -118,6 +121,12 @@ import { PlayerComponent } from './mongo/player/player.component';
     },
     IconSetService,
   ],
-  bootstrap:[AppComponent]
+  bootstrap:[AppComponent],
+  entryComponents:[AppComponent,MongoComponent],
+  schemas:[NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule {}
+export class AppModule {
+
+
+}
+

@@ -1,6 +1,6 @@
 // Angular
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 import { ColorsComponent } from './colors.component';
@@ -14,13 +14,14 @@ import { TableComponent } from '../../table/table.component';
   imports: [
     CommonModule,
     ThemeRoutingModule,
-    
-   
+
+
   ],
   declarations: [
     ColorsComponent,
     TypographyComponent,
-    TableComponent
-  ]
+
+  ],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class ThemeModule { }

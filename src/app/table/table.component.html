@@ -1,24 +1,24 @@
 <div class="col-lg-12">
-    <div class="card" [ngStyle]=bg >
-      <div class="card-header " [ngStyle]=hedbg>
+    <div class="card"  >
+      <div class="card-header " >
         <i class="fa fa-eercast" ></i> Form Details
       </div>
       <div class="card-body">
-        <table class="table table-striped" [ngStyle]=tabcol>
+        <table class="table table-striped" >
           <thead  >
             <tr>
               <th>ID</th>
               <th>Name</th>
              <th>TEMPERAMENT</th>
-             <th>BRED_FOR</th> 
+             <th>BRED_FOR</th>
              <th>IMAGE</th>
-              <th>STATUS</th> 
-              
+              <th>STATUS</th>
+
             </tr>
           </thead>
           <tbody >
-           
-            
+
+
             <tr *ngFor="let item of employees;let ia=index ">
               <td style="width: 5%;" >{{item.id}}</td>
               <td style="width: 20%;">{{item.name}}</td>
@@ -33,14 +33,14 @@
 
                 </button>
               </td>
-                          
+
             </tr>
           </tbody>
           <div class="d-flex justify-content-center">
-            
+
           </div>
         </table>
-        
+
       </div>
     </div>
   </div>

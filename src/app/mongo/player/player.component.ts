@@ -1,4 +1,4 @@
-import {  Component,EventEmitter,Input, ViewEncapsulation,OnInit, Output} from '@angular/core';
+import {  Component} from '@angular/core';
 
 
 import { ActivatedRoute } from '@angular/router';
@@ -15,12 +15,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class PlayerComponent  {
-  @Input() label:string;
-  @Output() action=new EventEmitter();
-  private numberofclick=0;
 
-  item: Array<string>;
-  public showConv;
+
+  item: []
+
   // We need use the ActivatedRoute object to get access
   // to information about the current route
   constructor(private activatedRoute: ActivatedRoute){

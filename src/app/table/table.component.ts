@@ -4,9 +4,7 @@ import { isWhiteSpaceLike, reduceEachLeadingCommentRange } from 'typescript';
 import { TableService } from './table.service';
 import {PaginatePipe} from 'ngx-pagination'
 import { Pipe, PipeTransform } from '@angular/core';
-@Pipe({
-  name:'paginate'
-})
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -68,5 +66,5 @@ export class TableComponent implements OnInit {
 
 
 
-      
+
   }
